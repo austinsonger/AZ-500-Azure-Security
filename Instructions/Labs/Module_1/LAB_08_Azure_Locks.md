@@ -44,7 +44,7 @@ The best way to ensure that locks are in place and protecting your resources is 
      ```
     
      ```powershell
-     New-AzStorageAccount -ResourceGroupName LockRG -Name XXXXXX -Location  EastUS -SkuName Standard_LRS -Kind StorageV2 
+     New-AzStorageAccount -ResourceGroupName LockRG -Name AZ500SA -Location  EastUS -SkuName Standard_LRS -Kind StorageV2 
      ```
 
 1.  Locate the Storage Account and select it. In the main blade, click the "Locks" icon
