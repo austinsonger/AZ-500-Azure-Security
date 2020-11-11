@@ -38,7 +38,7 @@ This lab requires creating a user that will be used for PIM.
     $PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
     ```
     ```powershell
-    $PasswordProfile.Password = "Pa55w.rd"
+    $PasswordProfile.Password = "P@$$dW0rd1!#"
     ```
     ```powershell
     $domainObj = get-azureaddomain
@@ -160,7 +160,7 @@ In the following task you will make  a user eligible for an Azure AD directory r
 
 When you need to take on an Azure AD directory role, you can request activation by using the **My roles** navigation option in PIM.
 
-1.  Open an **In Private** browsing session and navigate to **`https://portal.azure.com`** and login as **John** using her UPN. example John@myaad.onmicrosoft.com with the password **Pa55w.rd**.  When prompted change John's password.
+1.  Open an **In Private** browsing session and navigate to **`https://portal.azure.com`** and login as **John** using her UPN. example John@myaad.onmicrosoft.com with the password **P@$$dW0rd1!#**.  When prompted change John's password.
 
 1.  In the Azure Portal, click **All services** and search for and select **Azure AD Privileged Identity Management**.
 
