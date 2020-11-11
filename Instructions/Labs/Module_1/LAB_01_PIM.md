@@ -47,7 +47,7 @@ This lab requires creating a user that will be used for PIM.
     $domain = $domainObj[0].name
     ```
     ```powershell
-     New-AzureADUser -DisplayName "Isabella Simonsen" -PasswordProfile $PasswordProfile -UserPrincipalName "Isabella@$domain" -AccountEnabled $true -MailNickName "Isabella" -UsageLocation "US"
+     New-AzureADUser -DisplayName "John Doe" -PasswordProfile $PasswordProfile -UserPrincipalName "John@$domain" -AccountEnabled $true -MailNickName "John" -UsageLocation "US"
     ```
 ### Task 2:  Enable Azure AD Premium P2 trial and create a test user.
 
@@ -135,7 +135,7 @@ In the following task you will make  a user eligible for an Azure AD directory r
 
      ![Screenshot](../Media/Module-1/2020-05-04_06-15-51.png)
 
-1.  Click **No member selected**, select **Isabella** and then click **Select**.
+1.  Click **No member selected**, select **John** and then click **Select**.
 
      ![Screenshot](../Media/Module-1/2020-05-04_06-19-28.png)
 
@@ -160,7 +160,7 @@ In the following task you will make  a user eligible for an Azure AD directory r
 
 When you need to take on an Azure AD directory role, you can request activation by using the **My roles** navigation option in PIM.
 
-1.  Open an **In Private** browsing session and navigate to **`https://portal.azure.com`** and login as **Isabella** using her UPN. example Isabella@myaad.onmicrosoft.com with the password **Pa55w.rd**.  When prompted change Isabella's password.
+1.  Open an **In Private** browsing session and navigate to **`https://portal.azure.com`** and login as **John** using her UPN. example John@myaad.onmicrosoft.com with the password **Pa55w.rd**.  When prompted change John's password.
 
 1.  In the Azure Portal, click **All services** and search for and select **Azure AD Privileged Identity Management**.
 
@@ -178,7 +178,7 @@ When you need to take on an Azure AD directory role, you can request activation 
 
      ![Screenshot](../Media/Module-1/bd3d79a3-a66d-48a5-8b2e-94c18358b250.png)
 
-1.  Click **Additional verification required.  Click to continue**. You only have to authenticate once per session. Run through the wizard to authenticate Isabella.
+1.  Click **Additional verification required.  Click to continue**. You only have to authenticate once per session. Run through the wizard to authenticate John.
 
      ![Screenshot](../Media/Module-1/2020-02-24_14-16-20.png)
  
@@ -203,7 +203,7 @@ When you activate a role in PIM, it can take up to 10 minutes before you can acc
 
      ![Screenshot](../Media/Module-1/2020-02-24_14-20-01.png)
 
-1.  Log back in as Isabella.
+1.  Log back in as John.
 
 
 ### Task 3: Deactivate a role
@@ -215,7 +215,7 @@ If you complete your administrator tasks early, you can also deactivate a role m
 
 
 
-1.  Still signed in as **Isabella**, open Azure AD Privileged Identity Management.
+1.  Still signed in as **John**, open Azure AD Privileged Identity Management.
 
 1.  Click **Azure AD roles**.
 
@@ -372,7 +372,7 @@ You can customize some of the security alerts in PIM to work with your environme
   ![Screenshot](../Media/Module-1/2020-02-24_15-14-41.png)
 
 
-### Task 2: Enable Isabella for Global Administrator privileges.
+### Task 2: Enable John for Global Administrator privileges.
 
 1.  Open **Azure AD Privileged Identity Management**.
 
@@ -384,10 +384,10 @@ You can customize some of the security alerts in PIM to work with your environme
 
 1.  Select **Global Administrator** and click **+ Add assignments**.
 
-1.  On the **Add assignments** blade, under **Select member(s) *** click **No member selected**, select **Isabella** and click **Select** > **Next** and then **Assign**.
+1.  On the **Add assignments** blade, under **Select member(s) *** click **No member selected**, select **John** and click **Select** > **Next** and then **Assign**.
 
 
-1.  Open an in Private Browsing session and login to portal.azure.com as Isabella.
+1.  Open an in Private Browsing session and login to portal.azure.com as John.
 
 1.  Open **Azure AD Privileged Identity Management**.
 
@@ -399,7 +399,7 @@ You can customize some of the security alerts in PIM to work with your environme
 
      ![Screenshot](../Media/Module-1/55eb14b5-540a-4d26-aed7-0b96d162fb31.png)
 
-1.  Verify Isabella's identity using the wizard.
+1.  Verify John's identity using the wizard.
 
      ![Screenshot](../Media/Module-1/2020-02-24_15-32-04.png)
 
@@ -430,12 +430,12 @@ As a delegated approver, you'll receive an email notification when an Azure reso
 
     **Note**: You may need to refresh your browser to see the request.
 
-1.  Click the request from Isabella and enter the justification **Granted for this task** and click **Approve**.
+1.  Click the request from John and enter the justification **Granted for this task** and click **Approve**.
 
      ![Screenshot](../Media/Module-1/2020-02-24_15-36-06.png)
 
 
-1.  Switch back to the In Private Browsing session where Isabella is signed in and click My Roles and click the Active roles tab.  Note the status.
+1.  Switch back to the In Private Browsing session where John is signed in and click My Roles and click the Active roles tab.  Note the status.
 
      ![Screenshot](../Media/Module-1/fe734263-57c8-4cc9-b79f-848d7d4f9488.png)
 
