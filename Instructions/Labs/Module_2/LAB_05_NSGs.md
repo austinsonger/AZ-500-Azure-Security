@@ -19,9 +19,9 @@ You can filter network traffic inbound to and outbound from a virtual network su
 
     | Setting                 | Value                                              |
     | ---                     | ---                                                |
-    | Name                    | myVirtualNetwork                                   |
+    | Name                    | AZ500-VirtualNetwork                                   |
     | Subscription            | Select your subscription.                          |
-    | Resource group          | Select **Create new** and enter *myResourceGroup*. |
+    | Resource group          | Select **Create new** and enter *AZ500-ResourceGroup*. |
     | Location                | Select **East US**.                                |
 
     Select the IP Addresses tab and enter the following values:
@@ -29,7 +29,7 @@ You can filter network traffic inbound to and outbound from a virtual network su
     | Setting                 | Value                                              |
     | ---                     | --- |
     | Address space           | 10.0.0.0/16                                        |
-    | Subnet- Name            | Change the default subnet name to **mySubnet** and click **Save**                                           |
+    | Subnet- Name            | Change the default subnet name to **AZ500-Subnet** and click **Save**                                           |
     | Subnet - Address range  | 10.0.0.0/24                                        |
 
 ### Task 2:  Create application security groups
@@ -44,18 +44,18 @@ An application security group enables you to group together servers with similar
 
     | Setting        | Value                                                         |
     | ---            | ---                                                           |
-    | Name           | myAsgWebServers                                               |
+    | Name           | AZ500-ASG-WebServers                                               |
     | Subscription   | Select your subscription.                                     |
-    | Resource group | Select **Use existing** and then select  **myResourceGroup**. |
+    | Resource group | Select **Use existing** and then select  **AZ500-ResourceGroup**. |
     | Location       | East US                                                       |
 
 4.  Complete step 3 again, specifying the following values:
 
     | Setting        | Value                                                         |
     | ---            | ---                                                           |
-    | Name           | myAsgMgmtServers                                              |
+    | Name           | AZ500-ASG-MGMTServers                                             |
     | Subscription   | Select your subscription.                                     |
-    | Resource group | Select **Use existing** and then select  **myResourceGroup**. |
+    | Resource group | Select **Use existing** and then select  **AZ500-ResourceGroup**. |
     | Location       | East US                                                       |
 
 ### Task 3:  Create a network security group
@@ -66,27 +66,27 @@ An application security group enables you to group together servers with similar
 
     |Setting|Value|
     |---|---|
-    |Name|myNsg|
+    |Name|AZ500-NSG|
     |Subscription| Select your subscription.|
-    |Resource group | Select **Use existing** and then select *myResourceGroup*.|
+    |Resource group | Select **Use existing** and then select *AZ500-ResourceGroup*.|
     |Location|East US|
 
 ### Task 4:  Associate network security group to subnet
 
-1.  In the *Search resources, services, and docs* box at the top of the portal, begin typing *myNsg*. When **myNsg** appears in the search results, select it.
+1.  In the *Search resources, services, and docs* box at the top of the portal, begin typing *AZ500-NSG*. When **AZ500-NSG** appears in the search results, select it.
 2.  Under **SETTINGS**, select **Subnets** and then select **+ Associate**. 
 
-3.  Under **Associate subnet**, select **Virtual network** and then select **myVirtualNetwork**. Select **Subnet**, select **mySubnet**, and then select **OK**.
+3.  Under **Associate subnet**, select **Virtual network** and then select **AZ500-VirtualNetwork**. Select **Subnet**, select **AZ500-Subnet**, and then select **OK**.
 
 ### Task 5:  Create security rules
 
 1.  Under **SETTINGS**, select **Inbound security rules** and then select **+ Add**.
 
-2.  Create a security rule that allows ports 80 and 443 to the **myAsgWebServers** application security group. Under **Add inbound security rule**, enter, or select the following values, accept the remaining defaults, and then select **Add**:
+2.  Create a security rule that allows ports 80 and 443 to the **AZ500-ASG-WebServers** application security group. Under **Add inbound security rule**, enter, or select the following values, accept the remaining defaults, and then select **Add**:
 
     | Setting                 | Value                                                                                                           |
     | ---------               | ---------                                                                                                       |
-    | Destination             | Select **Application security group**, and then select **myAsgWebServers** for **Application security group**.  |
+    | Destination             | Select **Application security group**, and then select **AZ500-ASG-WebServers** for **Application security group**.  |
     | Destination port ranges | Enter 80,443                                                                                                    |
     | Protocol                | Select TCP                                                                                                      |
     | Name                    | Allow-Web-All                                                                                                   |
@@ -95,13 +95,13 @@ An application security group enables you to group together servers with similar
 
     | Setting                 | Value                                                                                                           |
     | ---------               | ---------                                                                                                       |
-    | Destination             | Select **Application security group**, and then select **myAsgMgmtServers** for **Application security group**. |
+    | Destination             | Select **Application security group**, and then select **AZ500-ASG-MGMTServers** for **Application security group**. |
     | Destination port ranges | Enter 3389                                                                                                      |
     | Protocol                | Select TCP                                                                                                      |
     | Priority                | Enter 110                                                                                                       |
     | Name                    | Allow-RDP-All                                                                                                   |
 
-    In this tutorial, RDP (port 3389) is exposed to the internet for the VM that is assigned to the *myAsgMgmtServers* application security group. For production environments, instead of exposing port 3389 to the internet, it's recommended that you connect to Azure resources that you want to manage using a VPN or private network connection.
+    In this tutorial, RDP (port 3389) is exposed to the internet for the VM that is assigned to the *AZ500-ASG-MGMTServers* application security group. For production environments, instead of exposing port 3389 to the internet, it's recommended that you connect to Azure resources that you want to manage using a VPN or private network connection.
 
 
 ### Task 6:  Create virtual machines
@@ -113,8 +113,8 @@ An application security group enables you to group together servers with similar
     |Setting|Value|
     |---|---|
     |Subscription| Select your subscription.|
-    |Resource group| Select **Use existing** and select **myResourceGroup**.|
-    |Name|myVmWeb|
+    |Resource group| Select **Use existing** and select **AZ500-ResourceGroup**.|
+    |Name|AZ500-VM-WS|
     |Location| Select **East US**.|
     |User name| Enter a user name of your choosing.|
     |Password| Pa55w.rd1234 |
@@ -126,7 +126,7 @@ An application security group enables you to group together servers with similar
 
     |Setting|Value|
     |---|---|
-    |Virtual network |Select **myVirtualNetwork**.|
+    |Virtual network |Select **AZ500-VirtualNetwork**.|
     |NIC network security group |Select **None**.|
 
 6.  Under **Management**, select **Off** for **Boot diagnostics**.  
@@ -134,7 +134,7 @@ An application security group enables you to group together servers with similar
 
 ### Task 7:  Create the second VM
 
-Complete above steps 1-7 again, but in step 3, name the VM *myVmMgmt*. The VM takes a few minutes to deploy. Do not continue to the next step until the VM is deployed.
+Complete above steps 1-7 again, but in step 3, name the VM *AZ500-VM-MS*. The VM takes a few minutes to deploy. Do not continue to the next step until the VM is deployed.
 
 ### Task 8:  Associate network interfaces to an ASG
 
@@ -142,42 +142,42 @@ Complete above steps 1-7 again, but in step 3, name the VM *myVmMgmt*. The VM ta
 When the portal created the VMs, it created a network interface for each VM and attached the network interface to the VM. Add the network interface for each VM to one of the application security groups you created previously:
 
 
-1.  In the *Search resources, services, and docs* box at the top of the portal, begin typing *myVmWeb*. When the **myVmWeb** VM appears in the search results, select it.
-2.  Under **SETTINGS**, select **Networking**.  Select **Application security groups**, then **Configure the application security groups**, then select **myAsgWebServers** for **Application security groups**, and then select **Save**.
+1.  In the *Search resources, services, and docs* box at the top of the portal, begin typing *AZ500-VM-WS*. When the **AZ500-VM-WS** VM appears in the search results, select it.
+2.  Under **SETTINGS**, select **Networking**.  Select **Application security groups**, then **Configure the application security groups**, then select **AZ500-ASG-WebServers** for **Application security groups**, and then select **Save**.
 
-3.  Complete steps 1 and 2 again, searching for the **myVmMgmt** VM and selecting the  **myAsgMgmtServers** ASG.
+3.  Complete steps 1 and 2 again, searching for the **AZ500-VM-MS** VM and selecting the  **AZ500-ASG-MGMTServers** ASG.
 
 ### Task 9:  Test traffic filters
 
-1.  Connect to the *myVmMgmt* VM. Enter *myVmMgmt* in the search box at the top of the portal. When **myVmMgmt** appears in the search results, select it. Select the **Connect** button.
+1.  Connect to the *AZ500-VM-MS* VM. Enter *AZ500-VM-MS* in the search box at the top of the portal. When **AZ500-VM-MS** appears in the search results, select it. Select the **Connect** button.
 2.  Select **RDP**, then **Download RDP file**.
 3.  Open the downloaded rdp file and select **Connect**. Enter the user name and password you specified when creating the VM. You may need to select **More choices**, then **Use a different account**, to specify the credentials you entered when you created the VM.
 4.  Select **OK**.
 5.  You may receive a certificate warning during the sign-in process. If you receive the warning, select **Yes** or **Continue** to proceed with the connection.
 
-    The connection succeeds because port 3389 is allowed inbound from the internet to the *myAsgMgmtServers* application security group that the network interface attached to the *myVmMgmt* VM is in.
+    The connection succeeds because port 3389 is allowed inbound from the internet to the *AZ500-ASG-MGMTServers* application security group that the network interface attached to the *AZ500-VM-MS* VM is in.
 
-6.  Connect to the *myVmWeb* VM from the *myVmMgmt* VM by entering the following command in a PowerShell session:
+6.  Connect to the *AZ500-VM-WS* VM from the *AZ500-VM-MS* VM by entering the following command in a PowerShell session:
 
     ```powershell
-    mstsc /v:myVmWeb
+    mstsc /v:AZ500-VM-WS
     ```
 
-    You are able to connect to the myVmWeb VM from the myVmMgmt VM because VMs in the same virtual network can communicate with each other over any port, by default. You can't, however, create a remote desktop connection to the *myVmWeb* VM from the internet because the security rule for the *myAsgWebServers* doesn't allow port 3389 inbound from the internet, and inbound traffic from the Internet is denied to all resources, by default.
+    You are able to connect to the AZ500-VM-WS VM from the AZ500-VM-MS VM because VMs in the same virtual network can communicate with each other over any port, by default. You can't, however, create a remote desktop connection to the *AZ500-VM-WS* VM from the internet because the security rule for the *AZ500-ASG-WebServers* doesn't allow port 3389 inbound from the internet, and inbound traffic from the Internet is denied to all resources, by default.
 
-7.  To install Microsoft IIS on the *myVmWeb* VM, enter the following command from a PowerShell session on the *myVmWeb* VM:
+7.  To install Microsoft IIS on the *AZ500-VM-WS* VM, enter the following command from a PowerShell session on the *AZ500-VM-WS* VM:
 
     ```powershell
     Install-WindowsFeature -name Web-Server -IncludeManagementTools
     ```
 
-8.  After the IIS installation is complete, disconnect from the *myVmWeb* VM, which leaves you in the *myVmMgmt* VM remote desktop connection.
-9.  Disconnect from the *myVmMgmt* VM.
-10.  In the *Search resources, services, and docs* box at the top of the Azure portal, begin typing *myVmWeb* from your computer. When **myVmWeb** appears in the search results, select it. Note the **Public IP address** for your VM. The address shown in the following picture is 137.135.84.74, but your address is different:
+8.  After the IIS installation is complete, disconnect from the *AZ500-VM-WS* VM, which leaves you in the *AZ500-VM-MS* VM remote desktop connection.
+9.  Disconnect from the *AZ500-VM-MS* VM.
+10.  In the *Search resources, services, and docs* box at the top of the Azure portal, begin typing *AZ500-VM-WS* from your computer. When **AZ500-VM-WS** appears in the search results, select it. Note the **Public IP address** for your VM. The address shown in the following picture is 137.135.84.74, but your address is different:
 
        ![Screenshot](../Media/Module-2/e3bbd69d-95d0-4b3b-98ce-714d30b4d1ef.png)
   
-11.  To confirm that you can access the *myVmWeb* web server from the internet, open an internet browser on your computer and browse to `http://<public-ip-address-from-previous-step>`. You see the IIS welcome screen because port 80 is allowed inbound from the internet to the *myAsgWebServers* application security group that the network interface attached to the *myVmWeb* VM is in.
+11.  To confirm that you can access the *AZ500-VM-WS* web server from the internet, open an internet browser on your computer and browse to `http://<public-ip-address-from-previous-step>`. You see the IIS welcome screen because port 80 is allowed inbound from the internet to the *AZ500-ASG-WebServers* application security group that the network interface attached to the *AZ500-VM-WS* VM is in.
 
 
 | WARNING: Prior to continuing you should remove all resources used for this lab.  To do this in the **Azure Portal** click **Resource groups**.  Select any resources groups you have created.  On the resource group blade click **Delete Resource group**, enter the Resource Group Name and click **Delete**.  Repeat the process for any additional Resource Groups you may have created. **Failure to do this may cause issues with other labs.** |
