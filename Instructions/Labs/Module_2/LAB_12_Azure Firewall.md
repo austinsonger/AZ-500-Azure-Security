@@ -34,8 +34,8 @@ Network traffic is subjected to the configured firewall rules when you route you
 
       |Name     |Type     | Location|
      |---------|---------|---------|
-     azureFirewalls-ip|	Public IP address|	East US	
-     Firewall-route |	Route table|	East US	
+     AZ500-Firewall-IP|	Public IP address|	East US	
+     AZ500-Firewall-Route |	Route table|	East US	
      AZ500Server-J|	Virtual machine|	East US	
      AZ500Server-J_OsDisk|	Disk|	East US	
      AZ500-J121	|Network interface|	East US	
@@ -97,12 +97,12 @@ For the **AZ500Server-W-SN** subnet, configure the outbound default route to go 
 1.  From the Azure portal home page, click **All services**.
 2.  Under **Networking**, click **Route tables**.
 3.  Click **Add**.
-4.  For **Name**, type **Firewall-route**.
+4.  For **Name**, type **AZ500-Firewall-Route**.
 5.  For **Subscription**, select your subscription.
 6.  For **Resource group**, select **Use existing**, and select **AZ500Server-FW-RG**.
 7.  For **Location**, select **East US**.
 8.  Click **Create**.
-9.  Click **Refresh**, and then click the **Firewall-route** route table.
+9.  Click **Refresh**, and then click the **AZ500-Firewall-Route** route table.
 10.  Click **Subnets** > **Associate**.
 11.  Click **Virtual network** > **AZ500-FW-Vnet**.
 12.  For **Subnet**, click **AZ500Server-W-SN**. Make sure that you select only the **AZ500Server-W-SN** subnet for this route, otherwise your firewall won't work correctly.
