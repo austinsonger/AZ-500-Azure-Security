@@ -22,7 +22,7 @@ Network traffic is subjected to the configured firewall rules when you route you
     https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FGoDeploy%2FAZ500%2Fmaster%2FAZ500%20Mod2%20Lab%207%2Ftemplate.json
     ```
  
-2.  Click **Create new** under the Resource Group and use the resource group name of **Test-FW-RG**  
+2.  Click **Create new** under the Resource Group and use the resource group name of **AZ500Server-FW-RG**  
 
 3.  Select the loction of **East US**  
 
@@ -36,16 +36,16 @@ Network traffic is subjected to the configured firewall rules when you route you
      |---------|---------|---------|
      azureFirewalls-ip|	Public IP address|	East US	
      Firewall-route |	Route table|	East US	
-     Srv-Jump|	Virtual machine|	East US	
-     Srv-Jump_OsDisk|	Disk|	East US	
-     srv-jump121	|Network interface|	East US	
-     Srv-Jump-nsg|	Network security group|	East US	
-     Srv-Jump-PIP|	Public IP address|	East US	
-     Srv-Work|	Virtual machine|	East US	
-     Srv-Work_OsDisk_1 |	Disk|	East US	
-     srv-work267|	Network interface|	East US	
-     Srv-Work-nsg|	Network security group|	East US	
-     Test-FW-VN|	Virtual network|	East US
+     AZ500Server-J|	Virtual machine|	East US	
+     AZ500Server-J_OsDisk|	Disk|	East US	
+     AZ500-J121	|Network interface|	East US	
+     AZ500Server-J-nsg|	Network security group|	East US	
+     AZ500-J-IP|	Public IP address|	East US	
+     AZ500Server-W|	Virtual machine|	East US	
+     AZ500Server-W_OsDisk_1 |	Disk|	East US	
+     AZ500-W267|	Network interface|	East US	
+     AZ500Server-W-nsg|	Network security group|	East US	
+     AZ500-FW-Vnet|	Virtual network|	East US
 
 
 ### Task 2: Deploy the firewall
@@ -67,11 +67,11 @@ In this task you will deploy the Azure firewall into the VNet.
      |Setting  |Value  |
      |---------|---------|
      |Subscription     |_your subscription_|
-     |Resource group     |**Use existing**: Test-FW-RG |
-     |Name     |Test-FW01|
+     |Resource group     |**Use existing**: AZ500Server-FW-RG |
+     |Name     |AZ500Server-FW01|
      |Location     |East US|
-     |Choose a virtual network     |**Use existing**: Test-FW-VN|
-     |Public IP address     |**Add new**. **TEST-FW-PIP** The Public IP address must be the Standard SKU type.|
+     |Choose a virtual network     |**Use existing**: AZ500-FW-Vnet|
+     |Public IP address     |**Add new**. **AZ500-FW-PIP** The Public IP address must be the Standard SKU type.|
    
      ![Screenshot](../Media/Module-2/ef63f092-da4a-4df4-8a1b-56d49228aa84.png)
 
@@ -82,7 +82,7 @@ In this task you will deploy the Azure firewall into the VNet.
 
     This will take a few minutes to deploy.
 
-7.  After the deployment completes, go to the **Test-FW-RG** resource group, and click the **Test-FW01** firewall.
+7.  After the deployment completes, go to the **AZ500Server-FW-RG** resource group, and click the **AZ500Server-FW01** firewall.
 
 8.  Make a note of the **Private IP** address. You'll use it later when you create the default route.
 
@@ -91,7 +91,7 @@ In this task you will deploy the Azure firewall into the VNet.
 ### Task 3: Create a default route
 
 
-For the **Workload-SN** subnet, configure the outbound default route to go through the firewall.
+For the **AZ500Server-W-SN** subnet, configure the outbound default route to go through the firewall.
 
 
 1.  From the Azure portal home page, click **All services**.
@@ -99,13 +99,13 @@ For the **Workload-SN** subnet, configure the outbound default route to go throu
 3.  Click **Add**.
 4.  For **Name**, type **Firewall-route**.
 5.  For **Subscription**, select your subscription.
-6.  For **Resource group**, select **Use existing**, and select **Test-FW-RG**.
+6.  For **Resource group**, select **Use existing**, and select **AZ500Server-FW-RG**.
 7.  For **Location**, select **East US**.
 8.  Click **Create**.
 9.  Click **Refresh**, and then click the **Firewall-route** route table.
 10.  Click **Subnets** > **Associate**.
-11.  Click **Virtual network** > **Test-FW-VN**.
-12.  For **Subnet**, click **Workload-SN**. Make sure that you select only the **Workload-SN** subnet for this route, otherwise your firewall won't work correctly.
+11.  Click **Virtual network** > **AZ500-FW-Vnet**.
+12.  For **Subnet**, click **AZ500Server-W-SN**. Make sure that you select only the **AZ500Server-W-SN** subnet for this route, otherwise your firewall won't work correctly.
 
 13.  Click **OK**.
 14.  Click **Routes** > **Add**.
@@ -121,12 +121,12 @@ For the **Workload-SN** subnet, configure the outbound default route to go throu
 ### Task 4: Configure an application rule
 
 
-In this task you will create an application rule that allows outbound access to `msn.com`.
+In this task you will create an application rule that allows outbound access to `google.com`.
 
 
-1.  Open the **Test-FW-RG** resource group and click the **Test-FW01** firewall.
+1.  Open the **AZ500Server-FW-RG** resource group and click the **AZ500Server-FW01** firewall.
 
-2.  On the **Test-FW01** page, under **Settings** section, click **Rules**.
+2.  On the **AZ500Server-FW01** page, under **Settings** section, click **Rules**.
 3.  Click the **Application rule collection** tab.
 4.  Click **Add application rule collection**.
 5.  For **Name**, type **App-Coll01**.
@@ -135,7 +135,7 @@ In this task you will create an application rule that allows outbound access to 
 8.  Under **Rules**, **Target FQDNs**, for **Name**, type **AllowGH**.
 9.  For **Source Addresses**, type **10.0.2.0/24**.
 10.  For **Protocol:port**, type **http, https**.
-11.  For **Target FQDNS**, type **msn.com**
+11.  For **Target FQDNS**, type **google.com**
 12.  Click **Add**.
 
  Azure Firewall includes a built-in rule collection for infrastructure FQDNs that are allowed by default. These FQDNs are specific for the platform and can't be used for other purposes. 
@@ -148,7 +148,7 @@ In this task you will create a network rule that allows outbound access to two I
 
 1.  Click the **Network rule collection** tab.
 2.  Click **Add network rule collection**.
-3.  For **Name**, type **Net-Coll01**.
+3.  For **Name**, type **NC01**.
 4.  For **Priority**, type **200**.
 5.  For **Action**, select **Allow**.
 
@@ -159,15 +159,15 @@ In this task you will create a network rule that allows outbound access to two I
 10.  For **Destination Ports**, type **53**.
 11.  Click **Add**.
 
-### Task 6: Change the primary and secondary DNS address for the **Srv-Work** network interface
+### Task 6: Change the primary and secondary DNS address for the **AZ500Server-W** network interface
 
 
 For testing purposes in this tutorial, you configure the primary and secondary DNS addresses. This isn't a general Azure Firewall requirement.
 
 
-1.  From the Azure portal, open the **Test-FW-RG** resource group.
+1.  From the Azure portal, open the **AZ500Server-FW-RG** resource group.
 
-2.  Click the network interface for the **Srv-Work** virtual machine.
+2.  Click the network interface for the **AZ500Server-W** virtual machine.
 
     1.  Under **Settings**, click **Networking**.
 
@@ -179,7 +179,7 @@ For testing purposes in this tutorial, you configure the primary and secondary D
 
 5.  Click **Save** and wait until it has successfully saved.. 
 
-6.  Restart the **Srv-Work** virtual machine.
+6.  Restart the **AZ500Server-W** virtual machine.
 
 ### Task 7: Test the firewall
 
@@ -187,27 +187,27 @@ For testing purposes in this tutorial, you configure the primary and secondary D
 In this task you will test the firewall to confirm that it works as expected.
 
 
-1.  From the Azure portal, review the network settings for the **Srv-Work** virtual machine and note the private IP address.
+1.  From the Azure portal, review the network settings for the **AZ500Server-W** virtual machine and note the private IP address.
 
-2.  Connect to the **Srv-Jump** virtual machine using RDP, and from there open a remote desktop connection to the **Srv-Work** private IP address.
+2.  Connect to the **AZ500Server-J** virtual machine using RDP, and from there open a remote desktop connection to the **AZ500Server-W** private IP address.
 
-    -	**Username**: localadmin
-    -	**Password**: Pa55w.rd1234
+    -	**Username**: firewalladmin
+    -	**Password**: P@$$W0rd1!2@
 
-3.  Open Internet Explorer and browse to **`https://www.msn.com`**
+3.  Open Internet Explorer and browse to **`https://www.google.com`**
 
 4.  Click **OK** > **Close** on the security alerts.
 
      You should see the MSN home page.
 
-5.  Browse to **`https://msn.com`**
+5.  Browse to **`https://google.com`**
 
        - You should be blocked by the firewall.
        - So now you've verified that the firewall rules are working:
           - You can browse to the one allowed FQDN, but not to any others.
           - You can resolve DNS names using the configured external DNS server.
 
-1.  To troubleshoot, go to **Network Watcher**, choose **Topology** then choose **TEST-FW-RG** to see the overall network diagram.
+1.  To troubleshoot, go to **Network Watcher**, choose **Topology** then choose **AZ500Server-FW-RG** to see the overall network diagram.
 
 | WARNING: Prior to continuing you should remove all resources used for this lab.  To do this in the **Azure Portal** click **Resource groups**.  Select any resources groups you have created.  On the resource group blade click **Delete Resource group**, enter the Resource Group Name and click **Delete**.  Repeat the process for any additional Resource Groups you may have created. **Failure to do this may cause issues with other labs.** |
 | --- |
