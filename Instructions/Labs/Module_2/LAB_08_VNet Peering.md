@@ -21,9 +21,9 @@ You can connect virtual networks to each other with virtual network peering. The
 
     |Setting|Value|
     |---|---|
-    |Name|myVirtualNetwork1|
+    |Name|AZ500-Peer-Vnet1|
     |Subscription| Select your subscription.|
-    |Resource group| Select **Create new** and enter *myResourceGroup*.|
+    |Resource group| Select **Create new** and enter *AZ500-Peer-RG*.|
     |Location| Select **East US**.|
 
     Select the IP Addresses tab and enter the following values:
@@ -31,37 +31,37 @@ You can connect virtual networks to each other with virtual network peering. The
     |Setting|Value|
     |---|---|
     |Address space|10.0.0.0/16|
-    |Subnet Name|Subnet1|
+    |Subnet Name|Peer-SN|
     |Subnet Address range|10.0.0.0/24|
 
 4.  Complete steps 1-3 again, with the following changes:
 
     |Setting|Value|
     |---|---|
-    |Name|myVirtualNetwork2|
+    |Name|AZ500-Peer-Vnet2|
     |Address space|10.1.0.0/16|
-    |Resource group| Select **Use existing** and then select **myResourceGroup**.|
+    |Resource group| Select **Use existing** and then select **AZ500-Peer-RG**.|
     |Subnet Address range|10.1.0.0/24|
 
 ### Task 2: Peer virtual networks
 
-1.  In the Search box at the top of the Azure portal, begin typing *MyVirtualNetwork1*. When **myVirtualNetwork1** appears in the search results, select it.
+1.  In the Search box at the top of the Azure portal, begin typing *AZ500-Peer-Vnet1*. When **AZ500-Peer-Vnet1** appears in the search results, select it.
 2.  Select **Peerings**, under **SETTINGS**, and then select **+ Add**.
 
 3.  Enter, or select, the following information, accept the defaults for the remaining settings, and then select **OK**.
 
     |Setting|Value|
     |---|---|
-    |Name|myVirtualNetwork1-myVirtualNetwork2|
+    |Name|AZ500-Peer-Vnet1-AZ500-Peer-Vnet2|
     |Subscription| Select your subscription.|
-    |Virtual network|myVirtualNetwork2 - To select the *myVirtualNetwork2* virtual network, select **Virtual network**, then select **myVirtualNetwork2**. You can select a virtual network in the same region or in a different region.|
-    |Name|myVirtualNetwork2-myVirtualNetwork1|
+    |Virtual network|AZ500-Peer-Vnet2 - To select the *AZ500-Peer-Vnet2* virtual network, select **Virtual network**, then select **AZ500-Peer-Vnet2**. You can select a virtual network in the same region or in a different region.|
+    |Name|AZ500-Peer-Vnet2-AZ500-Peer-Vnet1|
 
     The **PEERING STATUS** is *Initiated*.
 
     If you don't see the status, refresh your browser.
 
-    The **PEERING STATUS** is *Connected*. Azure also changed the peering status for the *myVirtualNetwork2-myVirtualNetwork1* peering from *Initiated* to *Connected.* Virtual network peering is not fully established until the peering status for both virtual networks is *Connected.* 
+    The **PEERING STATUS** is *Connected*. Azure also changed the peering status for the *AZ500-Peer-Vnet2-AZ500-Peer-Vnet1* peering from *Initiated* to *Connected.* Virtual network peering is not fully established until the peering status for both virtual networks is *Connected.* 
     
     
 
@@ -73,8 +73,8 @@ You can connect virtual networks to each other with virtual network peering. The
 
     |Setting|Value|
     |---|---|
-    |Resource group| Select **myResourceGroup**.|
-    |Name|myVM1|
+    |Resource group| Select **AZ500-Peer-RG**.|
+    |Name|AZ500-Peer-VM01|
     |Region| East US|
     |User name| localadmin |
     |Password| Pa55w.rd1234 |
@@ -86,8 +86,8 @@ You can connect virtual networks to each other with virtual network peering. The
 
     |Setting|Value|
     |---|---|
-    |Virtual network| myVirtualNetwork1 - If it's not already selected, select **Virtual network** and then select **myVirtualNetwork1** under **Choose virtual network**.|
-    |Subnet| Subnet1 - If it's not already selected, select **Subnet** and then select **Subnet1** under **Choose subnet**.|
+    |Virtual network| AZ500-Peer-Vnet1 - If it's not already selected, select **Virtual network** and then select **AZ500-Peer-Vnet1** under **Choose virtual network**.|
+    |Subnet| Peer-SN - If it's not already selected, select **Subnet** and then select **Peer-SN** under **Choose subnet**.|
     |Public inbound ports| Select **Allow selected ports**|
     |Select inbound ports| **RDP** |
 
@@ -103,21 +103,21 @@ You can connect virtual networks to each other with virtual network peering. The
 
     |Setting|Value|
     |---|---|
-    |Name | myVM2|
-    |Virtual network | myVirtualNetwork2|
+    |Name | AZ500-Peer-VM02|
+    |Virtual network | AZ500-Peer-Vnet2|
 
 
 
 
 ### Task 4: Communicate between VMs
 
-1.  In the *Search* box at the top of the portal, begin typing *myVM1*. When **myVM1** appears in the search results, select it.
-2.  Create a remote desktop connection to the *myVm1* VM by selecting **Connect**, then selecting **RDP**, then selecting the **Download RDP File** button.
+1.  In the *Search* box at the top of the portal, begin typing *AZ500-Peer-VM01*. When **AZ500-Peer-VM01** appears in the search results, select it.
+2.  Create a remote desktop connection to the *AZ500-Peer-VM01* VM by selecting **Connect**, then selecting **RDP**, then selecting the **Download RDP File** button.
 
 3.  To connect to the VM, open the downloaded RDP file. If prompted, select **Connect**.
 4.  Enter the user name and password you specified when creating the VM (you may need to select **More choices**, then **Use a different account**, to specify the credentials you entered when you created the VM), then select **OK**.
 5.  You may receive a certificate warning during the sign-in process. Select **Yes** to proceed with the connection.
-6.  In a later step, ping is used to communicate with the *myVm2* VM from the *myVm1* VM. Ping uses the Internet Control Message Protocol (ICMP), which is denied through the Windows Firewall, by default. On the *myVm1* VM, enable ICMP through the Windows firewall, so that you can ping this VM from *myVm2* in a later step, using PowerShell:
+6.  In a later step, ping is used to communicate with the *AZ500-Peer-VM02* VM from the *AZ500-Peer-VM01* VM. Ping uses the Internet Control Message Protocol (ICMP), which is denied through the Windows Firewall, by default. On the *AZ500-Peer-VM01* VM, enable ICMP through the Windows firewall, so that you can ping this VM from *AZ500-Peer-VM02* in a later step, using PowerShell:
 
     ```powershell
     New-NetFirewallRule -DisplayName "Allow ICMPv4-In" -Protocol ICMPv4
@@ -125,19 +125,19 @@ You can connect virtual networks to each other with virtual network peering. The
     
     Though ping is used to communicate between VMs in this tutorial, allowing ICMP through the Windows Firewall for production deployments is not recommended.
 
-7.  To connect to the *myVm2* VM, enter the following command from a command prompt on the *myVm1* VM: *If prompted, enter the credentials. Being able to connect this verifies you can use the peering connection to myVM2 using RDP on the internal network.*
+7.  To connect to the *AZ500-Peer-VM02* VM, enter the following command from a command prompt on the *AZ500-Peer-VM01* VM: *If prompted, enter the credentials. Being able to connect this verifies you can use the peering connection to AZ500-Peer-VM02 using RDP on the internal network.*
 
     ```cli
     mstsc /v:10.1.0.4
     ```
     
-8.  Since you enabled ping on *myVm1*, you can now ping it by IP address: *This verifies that the established peer is functioning as expected.*
+8.  Since you enabled ping on *AZ500-Peer-VM01*, you can now ping it by IP address: *This verifies that the established peer is functioning as expected.*
 
     ```cli
     ping 10.0.0.4
     ```
     
-9.  Disconnect your RDP sessions to both *myVM1* and *myVM2*.
+9.  Disconnect your RDP sessions to both *AZ500-Peer-VM01* and *AZ500-Peer-VM02*.
 
 
 | WARNING: Prior to continuing you should remove all resources used for this lab.  To do this in the **Azure Portal** click **Resource groups**.  Select any resources groups you have created.  On the resource group blade click **Delete Resource group**, enter the Resource Group Name and click **Delete**.  Repeat the process for any additional Resource Groups you may have created. **Failure to do this may cause issues with other labs.** |
