@@ -19,19 +19,19 @@ Bastion provides secure RDP and SSH connectivity to all VMs in the virtual netwo
 1.  Run the following 2 commands to create a Resource Group and Virtual Machine and VNet to test the Azure Bastion service.
 
     ```powershell
-    New-AzResourceGroup -Name AZ500-BASTION-RG -Location "East US"
+    New-AzResourceGroup -Name AZ500-BT-RG -Location "East US"
     ```
     
     ```powershell
-    New-AzVm -ResourceGroupName "AZ500-BASTION-RG" -Name "AZ500-BASTION-VM" -Location "East  US" -VirtualNetworkName "AZ500-BASTION-Vnet" -SubnetName "AZ500-BASTION-Subnet" -SecurityGroupName   "AZ500-BASTION-NSG"
+    New-AzVm -ResourceGroupName "AZ500-BT-RG" -Name "AZ500-BT-VM" -Location "East  US" -VirtualNetworkName "AZ500-BT-VN" -SubnetName "AZ500-BT-SN" -SecurityGroupName   "AZ500-BT-NSG"
     ```
 
     **Note**: The VM is being created without a Public IP Address.
 
 
-1.  When prompted enter **LocalAdmin** and **Pa55w.rd1234** for the credentials.
+1.  When prompted enter **johndoe** and **P@$$W0rd1!2@** for the credentials.
 
-1.  In the Azure Portal navigate to your **AZ500-BASTION-Vnet** and click **Subnets**.
+1.  In the Azure Portal navigate to your **AZ500-BT-VN** and click **Subnets**.
 
      ![Screenshot](../Media/Module-2/e587492e-eeb7-4552-b5d1-fe495a3b2db9.png)
  
@@ -61,10 +61,10 @@ Bastion provides secure RDP and SSH connectivity to all VMs in the virtual netwo
 1.  On the **Create a bastion** page, configure a new Bastion resource. Specify the configuration settings below.
 
     * **Subscription**: Select your Subscription
-    * **Resource Group**: AZ500-BASTION-RG
+    * **Resource Group**: AZ500-BT-RG
     * **Name**: Bastion
     * **Region**: East US
-    * **Virtual network**: **AZ500-BASTION-Vnet**
+    * **Virtual network**: **AZ500-BT-VN**
     * **Subnet**: **AzureBastionSubnet**
     * **Public IP address**: The public IP of the Bastion resource on which RDP/SSH will be accessed (over port 443). Create a new public IP, or use an existing one. The public IP address must be in the same region as the Bastion resource you are creating.
     * **Public IP address name**: Leave as default
@@ -93,7 +93,7 @@ If you create a bastion host in the portal by using an existing VM, various sett
 
        ![Screenshot](../Media/Module-2/2020-05-23_08-49-04.png)
 
-1.  De-select Open in new window and then enter **LocalAdmin** and **Pa55w.rd1234** for the credentials and click **Connect**.
+1.  De-select Open in new window and then enter **johndoe** and **P@$$W0rd1!2@** for the credentials and click **Connect**.
 
      ![Screenshot](../Media/Module-2/47fb7b09-c439-4e44-80ab-b9ed7bf58494.png)
 
