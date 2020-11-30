@@ -20,9 +20,9 @@ Creation of more than one plan is not required for most organizations. A plan ca
 
     |Setting        |Value                                              |
     |---------      |---------                                          |
-    |Name           | myDdosProtectionPlan                              |
+    |Name           | AZ500-DDoS                              |
     |Subscription   | Select your subscription.                         |
-    |Resource group | Select **Create new** and enter *myResourceGroup* |
+    |Resource group | Select **Create new** and enter *AZ500-DDoS-RG* |
     |Location       | East US                                           |
 
 ### Task 2: Enable DDoS for a new virtual network
@@ -33,17 +33,17 @@ Creation of more than one plan is not required for most organizations. A plan ca
 
     | Setting         | Value                                                        |
     | ---------       | ---------                                                    |
-    | Name            | myVirtualNetwork                                             |
+    | Name            | AZ500-DDoS-VN                                             |
     | Subscription    | Select your subscription.                                    |
-    | Resource group  | Select **Use existing**, and then select **myResourceGroup** |
+    | Resource group  | Select **Use existing**, and then select **AZ500-DDoS-RG** |
     | Location        | East US                                                      |
-    | DDos protection | Select the **Security Tab**.  Select **Standard** and then under **DDoS protection**, select **myDdosProtectionPlan**. The plan you select can be in the same, or different subscription than the virtual network, but both subscriptions must be associated to the same Azure Active Directory tenant.|
+    | DDos protection | Select the **Security Tab**.  Select **Standard** and then under **DDoS protection**, select **AZ500-DDoS**. The plan you select can be in the same, or different subscription than the virtual network, but both subscriptions must be associated to the same Azure Active Directory tenant.|
 
     You cannot move a virtual network to another resource group or subscription when DDoS Standard is enabled for the virtual network. If you need to move a virtual network with DDoS Standard enabled, disable DDoS Standard first, move the virtual network, and then enable DDoS standard. After the move, the auto-tuned policy thresholds for all the protected public IP addresses in the virtual network are reset.
 
 1.  Click **All Services** and search for and select **Public IP addresses**.
 
-1.  Click **+ Add** and create an **IPv4** Public IP address in your **myResourceGroup** Resource Group.
+1.  Click **+ Add** and create an **IPv4** Public IP address in your **AZ500-DDoS-RG** Resource Group.
 
 ### Task 3: Disable DDoS for a virtual network
 
@@ -76,7 +76,7 @@ You can select any of the available DDoS protection metrics to alert you when th
 
 1.  Click **Select resource**.
 
-1.  Select your Subscription and then in the Filter by resource type drop down, select **Public IP addresses** then select **myPublicIP** (or the name of your public ip address you created earlier) then click **Done**.
+1.  Select your Subscription and then in the Filter by resource type drop down, select **Public IP addresses** then select **AZ500-DDoS-IP** (or the name of your public ip address you created earlier) then click **Done**.
 
     ![Screenshot](../Media/Module-2/2020-05-09_12-19-05.png)
 
@@ -98,7 +98,7 @@ You can select any of the available DDoS protection metrics to alert you when th
     |Action group name                     | **DDOS AG**  |
     |Short Name| **ddosag**        |
     |Subscription| Select your subscription        |
-    |Resource Group| Select **myResourceGroup**        |
+    |Resource Group| Select **AZ500-DDoS-RG**        |
     |Action Name| DDOS Alert Email        |
     |Action Type| Select **Email/SMS message/Push/Voice** then select email and enter a valid email address and click **OK**.|
 

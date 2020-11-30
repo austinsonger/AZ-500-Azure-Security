@@ -12,7 +12,7 @@ You can use the Update Management solution to manage updates and patches for you
 1.  Click **Resource Groups** on the Azure hub menu.
 
 1.  Click **Add**.
-1.  Name the resource group **RunBooks**
+1.  Name the resource group **AZ500-UPDATE-RG**
 1.  Change the region to **East US**
 2.  Click **Review + create**, then click **Create**.
 
@@ -26,7 +26,7 @@ You can use the Update Management solution to manage updates and patches for you
 
      |Name|Resource Group| Location | Create Azure Run As account
      |--------|--------|--------|--------|
-     |MyAutomation|RunBooks|EastUS2|Yes
+     |AZ500-AUTO|AZ500-UPDATE-RG|EastUS2|Yes
 
 1.  Click **Create**
 
@@ -43,7 +43,7 @@ You can use the Update Management solution to manage updates and patches for you
 
      |Resource Group|Virtual Machine Name|Region|Image|Username|Password|
      |--------|--------|------|-------------------|----------|------------|
-     |RunBooks|UpdateVM|EastUS|Windows Server 2016|localadmin|Pa55w.rd1234|
+     |AZ500-UPDATE-RG|UpdateVM|EastUS|Windows Server 2016|johndoe|Pa55w.rd1234|
 
 
 1.  Click **Review+Create**
@@ -94,7 +94,7 @@ You can use the Update Management solution to manage updates and patches for you
 
 1.  Return to the resource group you created erlier
 
-1.  Select the **MyAutomation** automation account
+1.  Select the **AZ500-AUTO** automation account
 
 1.  Under **Monitoring** click **Alerts** 
 
@@ -120,7 +120,7 @@ You can use the Update Management solution to manage updates and patches for you
 
      |Action Group name| Short Name|Resource Group| Action Name|Action Type|
      |-----------------|-----------|--------------|------------|-----------|
-     |VM Updates Action group|VMup|Runbooks|Email|Email/SMS/Push/voice
+     |VM-UD-AG|VMup|AZ500-UPDATE-RG|Email|Email/SMS/Push/voice
 
 
 1.  Click **edit details** next to email and fill in **your email** that will be used for the alerts
