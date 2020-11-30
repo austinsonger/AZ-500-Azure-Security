@@ -19,11 +19,11 @@ Bastion provides secure RDP and SSH connectivity to all VMs in the virtual netwo
 1.  Run the following 2 commands to create a Resource Group and Virtual Machine and VNet to test the Azure Bastion service.
 
     ```powershell
-    New-AzResourceGroup -Name myResourceGroup -Location "East US"
+    New-AzResourceGroup -Name AZ500-BASTION-RG -Location "East US"
     ```
     
     ```powershell
-    New-AzVm -ResourceGroupName "myResourceGroup" -Name "myVM" -Location "East  US" -VirtualNetworkName "myVnet" -SubnetName "mySubnet" -SecurityGroupName   "myNetworkSecurityGroup"
+    New-AzVm -ResourceGroupName "AZ500-BASTION-RG" -Name "AZ500-BASTION-VM" -Location "East  US" -VirtualNetworkName "AZ500-BASTION-Vnet" -SubnetName "AZ500-BASTION-Subnet" -SecurityGroupName   "AZ500-BASTION-NSG"
     ```
 
     **Note**: The VM is being created without a Public IP Address.
@@ -31,7 +31,7 @@ Bastion provides secure RDP and SSH connectivity to all VMs in the virtual netwo
 
 1.  When prompted enter **LocalAdmin** and **Pa55w.rd1234** for the credentials.
 
-1.  In the Azure Portal navigate to your **myVnet** and click **Subnets**.
+1.  In the Azure Portal navigate to your **AZ500-BASTION-Vnet** and click **Subnets**.
 
      ![Screenshot](../Media/Module-2/e587492e-eeb7-4552-b5d1-fe495a3b2db9.png)
  
@@ -61,10 +61,10 @@ Bastion provides secure RDP and SSH connectivity to all VMs in the virtual netwo
 1.  On the **Create a bastion** page, configure a new Bastion resource. Specify the configuration settings below.
 
     * **Subscription**: Select your Subscription
-    * **Resource Group**: myResourceGroup
+    * **Resource Group**: AZ500-BASTION-RG
     * **Name**: Bastion
     * **Region**: East US
-    * **Virtual network**: **myVnet**
+    * **Virtual network**: **AZ500-BASTION-Vnet**
     * **Subnet**: **AzureBastionSubnet**
     * **Public IP address**: The public IP of the Bastion resource on which RDP/SSH will be accessed (over port 443). Create a new public IP, or use an existing one. The public IP address must be in the same region as the Bastion resource you are creating.
     * **Public IP address name**: Leave as default
